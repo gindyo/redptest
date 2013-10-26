@@ -11,6 +11,7 @@ describe HomeController do
   		HomeController::BEVERAGES.should receive :all
     	get 'index'
     end
+    
   end
 
 end

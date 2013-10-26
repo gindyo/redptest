@@ -31,6 +31,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'mysql2'
 end
 group :test do
   gem 'database_cleaner', '1.0.1'

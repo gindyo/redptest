@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-  include BeverageMaker
-  BEVERAGES = BeverageMaker
+  BEVERAGES = BeverageMaker.new nil,nil,nil
   
   def index
   	@beverages = BEVERAGES.all

@@ -1,6 +1,10 @@
 #machine 
 	.push-btn 
-		=@beverage[:name]
+		-@beverages.all.each |b|
+      =b.name 
+      =b.price
+
+
 	#display
 	#cup
 		=image_tag 'coffe.gif'
