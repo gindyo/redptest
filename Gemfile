@@ -13,8 +13,12 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'thin'
 group :development do
+  gem 'spork', :github => 'sporkrb/spork'
+  gem 'spork-rails', :github => 'sporkrb/spork-rails'
   gem 'guard-bundler'
   gem 'guard-rails'
+  gem 'guard-livereload'
+  gem 'guard-spork'
   gem 'guard-rspec'
   gem 'html2haml'
   gem 'hub', :require=>nil
