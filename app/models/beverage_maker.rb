@@ -6,15 +6,11 @@ class BeverageMaker
     @inventory = inventory_class
     @beverage_class = beverage_class
   end
-  def all
-    all = []
-    recipes.all.each do |r| 
-      all<< beverage_class.new(r)
-    end
-    all
-  end
   def make name
-    
+    recipe = @recipes.find_by(name: name) 
+    raise "No such recipe" unless recipe
+    @inventory.check_inventory_for recipe #will throw exception if no sufficient inventory
+    @inventory.adjust_with(recipe)
   end
 
 end

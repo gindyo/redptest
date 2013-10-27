@@ -1,31 +1,37 @@
 require 'spec_helper'
-def responds_to m
-	
-end
-
+include CustomExceptions
 describe BeverageMaker do
 	
 	let(:bm){BeverageMaker.new}
-	
-	it 'responds to :all' do 
-		bm.should respond_to :all
+	before :each do
+		@recipe = FactoryGirl.build(:recipe)
+		Recipe.stub find_by: @recipe
+		Inventory.stub(:check_inventory_for)
+		Inventory.stub(:get_inventory_for)
+		Inventory.stub(:adjust_with)
 	end
 	it 'responds to :make' do
 		bm.should respond_to(:make).with 1
 	end
-	it 'makes new beverage' do
-		recipe = FactoryGirl.build :recipe
-		inventory_prod = Struct.new(:name, :available_count, :unit_price)
-		Inventory.stub(:where){inventory_prod.new('coffee', 10, 1 )}
+	describe 'makes new beverage' do 
+		it 'checks for availability' do
+			Inventory.should receive :check_inventory_for
+			bm.make :espresso
+		end 
+		
+		it 'adjusts Inventory' do
+			Inventory.should receive(:adjust_with).with @recipe
+			bm.make :espresso
+		end
 
+		it 'does not adjusts inventory if no sufficient inventory' do
+			Inventory.stub :check_inventory_for do 
+				raise NoSufficientInventory.new(nil,nil)
+			end
+			Inventory.should_not receive(:adjust_with).with @recipe
+			expect {bm.make :espresso}.to raise_exception NoSufficientInventory
+			
+		end
 	end
-	it 'returns all beverages' do
-		Recipe.stub(:all).and_return ['recipe']
-		Beverage.stub(:new).and_return 'thisisbeverage'
-		bm = BeverageMaker.new Recipe, Inventory, Beverage
-		bm.all.should eq ['thisisbeverage']
-	end
-
-
-
+	
 end

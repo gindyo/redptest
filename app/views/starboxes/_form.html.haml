@@ -1,0 +1,10 @@
+= form_for @starbox do |f|
+  - if @starbox.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@starbox.errors.count, "error")} prohibited this starbox from being saved:"
+      %ul
+        - @starbox.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

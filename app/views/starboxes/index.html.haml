@@ -1,0 +1,17 @@
+%h1 Listing starboxes
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @starboxes.each do |starbox|
+    %tr
+      %td= link_to 'Show', starbox
+      %td= link_to 'Edit', edit_starbox_path(starbox)
+      %td= link_to 'Destroy', starbox, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Starbox', new_starbox_path
