@@ -1,7 +1,15 @@
 class Inventory
 	include CustomExceptions
 	attr_accessor :name, :available_count, :unit_price, :id
-	def self.price_for_recipe_products recipe
+	MAX_COUNT = 25
+  def restock
+    all_inventory.each do |i|
+      i.update available_count: MAX_COUNT
+    end
+  end
+
+
+  def self.price_for_recipe_products recipe
 		price = 0.0
 
 		recipe.ingredients.each do |ingredient|
@@ -26,11 +34,10 @@ class Inventory
       end
     end
 
-
-
-
     def self.get_inventory_for product
    		raise 'Not Implemented'
    	end
-		
+		def all_inventory
+      raise 'Net Implemented'
+    end
 end
