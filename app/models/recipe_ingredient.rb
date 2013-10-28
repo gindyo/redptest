@@ -1,3 +1,3 @@
-class RecipeIngredient 
-	attr_accessor :id, :required_units, :recipe_id, :name
+class RecipeIngredient < ActiveRecord::Base
+  belongs_to :recipe
 end

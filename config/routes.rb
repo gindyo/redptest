@@ -1,5 +1,5 @@
 Redptest::Application.routes.draw do
-  resources :starboxes
-
-	root 'home#index'
+  resources :recipes
+  resources :recipe_ingredients
+  root 'starboxes#front_face'
 end

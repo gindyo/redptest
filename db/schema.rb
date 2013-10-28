@@ -11,6 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20131028070147) do
+
+  create_table "inventory_products", force: true do |t|
+    t.string  "name"
+    t.integer "available_count"
+    t.integer "unit_price"
+  end
+
+  create_table "recipe_ingredients", force: true do |t|
+    t.integer "recipe_id"
+    t.string  "name",           null: false
+    t.integer "required_units"
+  end
+
+  create_table "recipes", force: true do |t|
+    t.string "name"
+  end
 
 end

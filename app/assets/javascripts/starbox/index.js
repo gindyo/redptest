@@ -1,0 +1,1 @@
+Starbox = angular.module('Starbox', [])

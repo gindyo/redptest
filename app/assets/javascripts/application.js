@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bower_components/angular/angular
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
