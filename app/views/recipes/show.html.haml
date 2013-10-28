@@ -1,0 +1,11 @@
+%h2=@recipe.name
+%h3 Ingredients
+-@recipe.recipe_ingredients.each do |i|
+	=i.name
+	=i.required_units
+	units
+	%br
+%em
+	=link_to :Edit, edit_recipe_path
+	|
+	=link_to :Delete, recipe_path, {method: :delete, confirm: 'Are you sure'}

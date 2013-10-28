@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.new({recipe_ingredients: [RecipeIngredient.new]})
   end
 
   # GET /recipes/1/edit
@@ -25,7 +25,11 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    ingredients = []
+    recipe_params[:recipe_ingredients_attributes].each do |key,ingredient|
+      ingredients<< RecipeIngredient.new(ingredient)
+    end
+    @recipe = Recipe.new({name:recipe_params[:name], recipe_ingredients: ingredients})
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
@@ -40,6 +44,11 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    ingredients = []
+    recipe_params[:recipe_ingredients_attributes].each do |key,ingredient|
+      ingredients<< RecipeIngredient.new(ingredient)
+    end
+    recipe_params[:recipe_ingredients] = ingredients
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -69,8 +78,15 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      ingr = params.require(:recipe_ingredients).permit(:name, :required_units)
-      rec = params.require(:recipe).permit(:name, :id)
-      {name: rec[:name], id:rec[:id], recipe_ingredients:[ingr]}
+      params.require(:recipe).permit(
+        [
+          :name,
+          :id,
+          recipe_ingredients_attributes:[
+            :id,
+            :name,
+            :required_units]
+        ]
+      )
     end
 end

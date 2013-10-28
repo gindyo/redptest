@@ -1,0 +1,14 @@
+=form_for @recipe do |f|
+	=f.hidden_field :id
+	=f.text_field :name, {placeholder: 'Recipe Name'}
+	%h3 Ingredients
+	=f.fields_for :recipe_ingredients do |i|
+		=i.text_field :name, {placeholder: 'Recipe Ingredient Name'}
+		=i.number_field :required_units, {placeholder: 'Required Quantity'}
+		=link_to recipe_ingredient_path(i.object), {method: :delete} do
+			.icon.icon-large.icon-trash
+
+		%br
+	%i.icon.icon-plus-sign.icon-large
+	%br
+	=f.submit

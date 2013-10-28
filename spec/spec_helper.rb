@@ -14,6 +14,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'email_spec'
   require 'rspec/autorun'
+  require 'factory_girl_rails'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -62,6 +63,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  DatabaseCleaner.clean
   # This code will be run each time you run your specs.
   #FactoryGirl.find_definitions
 end

@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Recipe do
-  pending "add some examples to (or delete) #{__FILE__}"
+  	it 'creates its ingredients' do
+  		ingredient = RecipeIngredient.new name:'banana'
+  		r = Recipe.create!(name:'espresso', recipe_ingredients:[ingredient])
+  		RecipeIngredient.where(name:'banana').first.recipe_id.should eq r.id
+	end
 end

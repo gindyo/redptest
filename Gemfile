@@ -29,7 +29,7 @@ group :development do
   gem 'rb-inotify', :require=>false
 end
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require=>false
   gem 'rspec-rails'
   gem 'mysql2'
 end

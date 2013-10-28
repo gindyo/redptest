@@ -1,0 +1,6 @@
+-@recipes.each do |r|
+	%br   
+	=link_to r.name, recipe_path(r.id)
+%br
+%h4
+	=link_to 'New Recipe', new_recipe_path

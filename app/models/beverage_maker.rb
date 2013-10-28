@@ -2,7 +2,7 @@
 class BeverageMaker
   include CustomExceptions
   attr_accessor :recipes, :inventory, :beverage_class
-  def initialize recipes_class=Recipe, inventory_class=Inventory, beverage_class=Beverage
+  def initialize recipes_class=Recipe, inventory_class=InventoryProduct, beverage_class=Beverage
     @recipes = recipes_class 
     @inventory = inventory_class
     @beverage_class = beverage_class
