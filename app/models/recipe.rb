@@ -1,6 +1,6 @@
 class Recipe
   attr_accessor :id, :name, :ingredients
-  def self.find_by *args
+  def self.where *args
   	
   end
   

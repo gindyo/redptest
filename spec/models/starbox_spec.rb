@@ -14,7 +14,7 @@ describe Starbox do
 	end
 	describe 'making beverage' do
 		before :each do 
-			Recipe.stub find_by: FactoryGirl.build(:recipe)
+			Recipe.stub where: FactoryGirl.build(:recipe)
 		end
 		it 'makes a beverage' do
 			Inventory.stub get_inventory_for: FactoryGirl.build(:inventory_product, {available_count: 20})

@@ -7,4 +7,7 @@ module CustomExceptions
 			
 		end
 	end
+	class NoSuchRecipe <StandardError
+
+	end
 end

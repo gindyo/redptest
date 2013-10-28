@@ -30,6 +30,8 @@ class Starbox
     		@status = success_status beverage
     	rescue NoSufficientInventory
     		@status = failure_status beverage
+        rescue NoSuchRecipe
+            @status = 'No recipe found'
     	end
     end
 

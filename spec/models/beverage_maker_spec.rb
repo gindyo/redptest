@@ -5,7 +5,7 @@ describe BeverageMaker do
 	let(:bm){BeverageMaker.new}
 	before :each do
 		@recipe = FactoryGirl.build(:recipe)
-		Recipe.stub find_by: @recipe
+		Recipe.stub where: @recipe
 		Inventory.stub(:check_inventory_for)
 		Inventory.stub(:get_inventory_for)
 		Inventory.stub(:adjust_with)
@@ -30,8 +30,13 @@ describe BeverageMaker do
 			end
 			Inventory.should_not receive(:adjust_with).with @recipe
 			expect {bm.make :espresso}.to raise_exception NoSufficientInventory
-			
+
 		end
+		it 'raises no such Recipe error' do
+			Recipe.stub where: []
+			expect {bm.make :tea}.to raise_exception NoSuchRecipe
+		end
+
 	end
 	
 end
