@@ -23,7 +23,7 @@ class InventoryProduct < ActiveRecord::Base
     def self.check_inventory_for recipe
     	recipe.recipe_ingredients.each do |ingredient|
         inventory = get_inventory_for(ingredient.name)
-    		if inventory.available_count < ingredient.required_units
+    		if inventory && inventory.available_count < ingredient.required_units
     			raise NoSufficientInventory.new(ingredient, inventory.available_count)
     		end
     	end
