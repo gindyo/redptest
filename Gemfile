@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'figaro'
 gem 'haml-rails'
 gem 'thin'
+gem 'mysql2'
 group :development do
   gem 'spork', :github => 'sporkrb/spork'
   gem 'spork-rails', :github => 'sporkrb/spork-rails'
@@ -31,7 +32,6 @@ end
 group :development, :test do
   gem 'factory_girl_rails', :require=>false
   gem 'rspec-rails'
-  gem 'mysql2'
 end
 group :test do
   gem 'database_cleaner', '1.0.1'
