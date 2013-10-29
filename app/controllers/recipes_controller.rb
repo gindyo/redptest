@@ -75,6 +75,12 @@ class RecipesController < ApplicationController
     end
   end
 
+  def add_to_inventory
+    inventory_product_params = params.require(:inventory_product).permit(:name, :available_count, :unit_price)
+    InventoryProduct.create!(inventory_product_params)
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe

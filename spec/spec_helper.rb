@@ -15,7 +15,7 @@ Spork.prefork do
   require 'email_spec'
   require 'rspec/autorun'
   require 'factory_girl_rails'
-
+  require 'byebug'
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -66,4 +66,43 @@ Spork.each_run do
   DatabaseCleaner.clean
   # This code will be run each time you run your specs.
   #FactoryGirl.find_definitions
+end
+
+def seed_db
+cafe_americano = Recipe.create({
+  name: 'Espresso',
+  recipe_ingredients:[
+    RecipeIngredient.new(name:'espresso', required_units:3)
+  ]
+})
+cafe_late = Recipe.create({
+  name: 'Cafe Late',
+  recipe_ingredients:[
+    RecipeIngredient.new(name:'espresso', required_units:2),
+    RecipeIngredient.new(name:'steamed milk', required_units:1)
+  ]
+})
+cafe_moca = Recipe.create({
+  name: 'Cafe Moca',
+  recipe_ingredients:[
+    RecipeIngredient.new(name:'espresso', required_units:1),
+    RecipeIngredient.new(name:'cocoa', required_units:1),
+    RecipeIngredient.new(name:'whipped cream', required_units:1),
+    RecipeIngredient.new(name:'steamed milk', required_units:1)
+  ]
+  })
+
+for k,v in {
+'Cocoa'=>0.90,
+'Coffee'=>0.75,
+'Cream'=>0.25,
+'Decaf Coffee'=>0.75,
+'Espresso'=>1.10,
+'Foamed Milk'=>0.35,
+'Steamed Milk'=>0.35,
+'Sugar'=>0.25,
+'Whipped Cream'=>1.00,
+}
+  InventoryProduct.create({name: k, available_count: 25, unit_price: v})
+end
 end

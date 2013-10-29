@@ -1,0 +1,23 @@
+%h1 Inventory
+
+%table
+  %tr
+    %th Name
+    %th Available count
+    %th Unit price
+    %th
+    %th
+    %th
+
+  - @inventory_products.each do |inventory_product|
+    %tr
+      %td= inventory_product.name
+      %td= inventory_product.available_count
+      %td= inventory_product.unit_price
+      %td= link_to 'Show', inventory_product
+      %td= link_to 'Edit', edit_inventory_product_path(inventory_product)
+      %td= link_to 'Destroy', inventory_product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Inventory product', new_inventory_product_path

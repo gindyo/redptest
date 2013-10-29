@@ -11,6 +11,13 @@
  *= require_self
  *= require_tree .
 */
+i{
+  cursor: pointer
+}
+a:hover{
+  background: none
+}
+
 
 .content {
   background-color: #eee;

@@ -1,7 +1,12 @@
+require 'modules/my_helpers'
 class InventoryProduct < ActiveRecord::Base
-  belongs_to :recipe
 	include CustomExceptions
+  include MyHelpers
 	MAX_COUNT = 25
+
+  belongs_to :recipe_ingredient, foreign_key: 'name'
+
+
   def restock
     all_inventory.each do |i|
       i.update available_count: MAX_COUNT
@@ -12,8 +17,8 @@ class InventoryProduct < ActiveRecord::Base
   def self.price_for_recipe_products recipe
 		price = 0.0
     recipe.recipe_ingredients.each do |ingredient|
-       i = get_inventory_for(ingredient.name)
-       price += i.unit_price 
+       i = get_inventory_for(MyHelpers::caps ingredient.name)
+       price += i.unit_price*ingredient.required_units unless i.nil?
      end
 		price
 	end

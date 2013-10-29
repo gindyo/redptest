@@ -1,7 +1,7 @@
 class CreateRecipeIngredients < ActiveRecord::Migration
   def change
     create_table :recipe_ingredients do |t|
-      t.references :recipe_id, index: true
+      t.references :recipe, index: true
       t.string :name
       t.integer :required_units
 

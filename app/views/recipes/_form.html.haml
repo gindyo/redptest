@@ -3,7 +3,9 @@
 	=f.text_field :name, {placeholder: 'Recipe Name'}
 	%h3 Ingredients
 	=f.fields_for :recipe_ingredients do |i|
-		=i.text_field :name, {placeholder: 'Recipe Ingredient Name'}
+		=link_to 'add to list', "javascript:void(0)",onclick: '$("#new_product").show()'
+		%br
+		=select_tag(options_for_select(product_names.map{|name|caps name},caps(i.object.name)),{include_blank:true})
 		=i.number_field :required_units, {placeholder: 'Required Quantity'}
 		=link_to recipe_recipe_ingredient_path(@recipe.id,i.object), {method: :delete, confirm: 'Are you sure you want to delete this ingredient'} do
 			.icon.icon-large.icon-trash
@@ -14,3 +16,8 @@
 		%i.icon.icon-plus-sign.icon-large
 	%br
 	=f.submit
+#new_product.content.modal.hide
+	.pull-right(onclick="$('#new_product').hide()")
+		%i.icon.icon-large.icon-remove-sign
+	%h3 Adding New Ingredient
+	=render 'inventory_product_form'

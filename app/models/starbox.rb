@@ -9,7 +9,7 @@ class Starbox
     end
 
 
-	def initialize beverage_maker = BeverageMaker.new, inventory_class= Inventory, recipes_class=Recipe, beverage_class = Beverage
+	def initialize beverage_maker = BeverageMaker.new, inventory_class= InventoryProduct, recipes_class=Recipe, beverage_class = Beverage
 		@beverage_maker = beverage_maker
 		@inventory_class = inventory_class
 		@recipes_class = recipes_class

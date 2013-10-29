@@ -1,0 +1,6 @@
+#starbox-front(ng-app='Starbox' ng-controller="front")
+#buttons
+  -@starbox.menu.each do |menu_item|
+    .sb-front-button{id: menu_item.name}
+    =menu_item.name
+    =number_to_currency menu_item.price

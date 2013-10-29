@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @inventory_product.name
+%p
+  %b Available count:
+  = @inventory_product.available_count
+%p
+  %b Unit price:
+  = @inventory_product.unit_price
+
+= link_to 'Edit', edit_inventory_product_path(@inventory_product)
+\|
+= link_to 'Back', inventory_products_path

@@ -20,6 +20,10 @@ describe InventoryProduct do
 		@sugar = FactoryGirl.create :inventory_product, {name: 'sugar', unit_price:2}
 	end
 	
+	it 'returns a price given recipe' do
+		InventoryProduct.price_for_recipe_products(@recipe).should eq 6
+	end
+
 	describe 'check product inventory' do
 		it 'throws an NoSufficientInventory exception' do
 			recipe = FactoryGirl.create :recipe, name: :capuchino
@@ -32,10 +36,6 @@ describe InventoryProduct do
 	    end
 	end
 	
-	it 'responds to :price_for_recipe_products' do 
-		InventoryProduct.price_for_recipe_products(@recipe).should eq @coffee.unit_price+@sugar.unit_price
-	end
-
 	it 'adjusts product availability' do 
 		before = {
 			coffee: InventoryProduct.find_by(name:'coffee').available_count,

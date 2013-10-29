@@ -1,16 +1,14 @@
 class Beverage
   attr_accessor :recipe, :name
-  def initialize recipe, inventory_class=Inventory
+  def initialize recipe, inventory_class=InventoryProduct
     @recipe = recipe
     @inventory_class = inventory_class
   end
   def price 
-    total_price = 0.0
-    @inventory_class.price_for_products(@recipe).map{|k,v| total_price += v }
-    total_price
+    @inventory_class.price_for_recipe_products(@recipe)
   end
   def name
-    recipe.name
+    @recipe.name
   end
 
 
