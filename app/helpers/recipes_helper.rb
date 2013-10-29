@@ -1,4 +1,3 @@
-require 'inventory_product'
 module RecipesHelper
   def product_names
     InventoryProduct.all.map{|product| product.name.split.map(&:capitalize).join(' ')}
