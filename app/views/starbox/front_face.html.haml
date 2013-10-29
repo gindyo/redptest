@@ -1,4 +1,5 @@
 #starbox-front(ng-app='Starbox' ng-controller="FrontCtrl")
+  #image-paths{'image-paths'=>true, 'working-img'=>image_path('coffee.gif'), 'empty-img'=>image_path('empty_cup.png')}
   #buttons
     -@starbox.menu.each do |menu_item|
       .drink
@@ -10,5 +11,5 @@
     #display
       %h4 {{display.message}}
     #cup-holder
-      =image_tag 'empty_cup.png', {'ng-src'=>'{{cupImg}}'}
-    #image-paths{'image-paths'=>true, 'working-img'=>image_path('coffee.gif'), 'empty-img'=>image_path('empty_cup.png')}
+      %img(ng-src='{{cupImg}}')
+    
