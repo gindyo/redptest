@@ -13,6 +13,8 @@ gem 'haml-rails'
 gem 'thin'
 gem 'pg'
 gem 'mysql2'
+gem 'pry'
+gem 'pry-rails'
 group :development do
   gem 'spork', :github => 'sporkrb/spork'
   gem 'spork-rails', :github => 'sporkrb/spork-rails'
