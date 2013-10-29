@@ -10,5 +10,5 @@
     #display
       %h4 {{display.message}}
     #cup-holder
-      =image_tag 'empty_cup.png', {'ng-src'=>'/assets/{{cupImg}}'}
-                  
+      =image_tag 'empty_cup.png', {'ng-src'=>'{{cupImg}}'}
+    #image-paths{'image-paths'=>true, 'working-img'=>image_path('coffee.gif'), 'empty-img'=>image_path('empty_cup.png')}
