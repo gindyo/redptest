@@ -5,10 +5,12 @@
 	=f.fields_for :recipe_ingredients do |i|
 		=i.text_field :name, {placeholder: 'Recipe Ingredient Name'}
 		=i.number_field :required_units, {placeholder: 'Required Quantity'}
-		=link_to recipe_ingredient_path(i.object), {method: :delete} do
+		=link_to recipe_recipe_ingredient_path(@recipe.id,i.object), {method: :delete, confirm: 'Are you sure you want to delete this ingredient'} do
 			.icon.icon-large.icon-trash
 
 		%br
-	%i.icon.icon-plus-sign.icon-large
+
+	=link_to add_recipe_recipe_ingredient_path(@recipe.id),	{method: :post} do
+		%i.icon.icon-plus-sign.icon-large
 	%br
 	=f.submit

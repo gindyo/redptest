@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :add_ingredient]
 
   # GET /recipes
   # GET /recipes.json
@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
   def show
   end
 
-  # GET /recipes/new
+  # GET /recipes/news
   def new
     @recipe = Recipe.new({recipe_ingredients: [RecipeIngredient.new]})
   end
@@ -20,6 +20,11 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
 
+  end
+
+  def add_ingredient
+    @recipe.recipe_ingredients<<RecipeIngredient.create
+    render 'edit'
   end
 
   # POST /recipes
@@ -65,7 +70,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     respond_to do |format|
-      format.html { redirect_to recipes_url }
+      format.html { redirect_to recipes_path}
       format.json { head :no_content }
     end
   end

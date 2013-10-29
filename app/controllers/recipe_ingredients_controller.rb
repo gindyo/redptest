@@ -56,7 +56,7 @@ class RecipeIngredientsController < ApplicationController
   def destroy
     @recipe_ingredient.destroy
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to edit_recipe_path(@recipe_ingredient.recipe_id)  }
       format.json { head :no_content }
     end
   end
