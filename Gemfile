@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'figaro'
 gem 'haml-rails'
 gem 'thin'
+gem 'pg'
 gem 'mysql2'
 group :development do
   gem 'spork', :github => 'sporkrb/spork'

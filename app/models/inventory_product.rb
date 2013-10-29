@@ -15,7 +15,7 @@ class InventoryProduct < ActiveRecord::Base
   def self.price_for_recipe_products recipe
 		price = 0.0
     recipe.recipe_ingredients.each do |ingredient|
-       i = get_inventory_for(caps ingredient.name)#caps is defined in application_helper
+       i = get_inventory_for(ApplicationHelper.caps ingredient.name)#caps is defined in application_helper
        price += i.unit_price*ingredient.required_units unless i.nil?
      end
 		price
