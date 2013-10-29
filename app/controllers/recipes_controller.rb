@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/news
   def new
-    @recipe = Recipe.new({recipe_ingredients: [RecipeIngredient.new]})
+    @recipe = Recipe.new
   end
 
   # GET /recipes/1/edit

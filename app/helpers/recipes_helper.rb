@@ -1,7 +1,5 @@
-require 'modules/my_helpers'
 require 'inventory_product'
 module RecipesHelper
-  include MyHelpers
   def product_names
     InventoryProduct.all.map{|product| product.name.split.map(&:capitalize).join(' ')}
   end
@@ -9,6 +7,6 @@ module RecipesHelper
     InventoryProduct.new
   end
   def caps words
-    MyHelpers.caps words
+    ApplicationHelper.caps words
   end
 end

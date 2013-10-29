@@ -1,7 +1,5 @@
-require 'modules/my_helpers'
 class InventoryProduct < ActiveRecord::Base
 	include CustomExceptions
-  include MyHelpers
 	MAX_COUNT = 25
   validates :name , presence: true
   belongs_to :recipe_ingredient, foreign_key: 'name'
@@ -17,7 +15,7 @@ class InventoryProduct < ActiveRecord::Base
   def self.price_for_recipe_products recipe
 		price = 0.0
     recipe.recipe_ingredients.each do |ingredient|
-       i = get_inventory_for(MyHelpers::caps ingredient.name)
+       i = get_inventory_for(caps ingredient.name)#caps is defined in application_helper
        price += i.unit_price*ingredient.required_units unless i.nil?
      end
 		price
