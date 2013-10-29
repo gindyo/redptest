@@ -3,7 +3,7 @@ class InventoryProduct < ActiveRecord::Base
 	include CustomExceptions
   include MyHelpers
 	MAX_COUNT = 25
-
+  validates :name , presence: true
   belongs_to :recipe_ingredient, foreign_key: 'name'
 
 
@@ -24,7 +24,7 @@ class InventoryProduct < ActiveRecord::Base
 	end
     def self.check_inventory_for recipe
     	recipe.recipe_ingredients.each do |ingredient|
-    		inventory = get_inventory_for(ingredient.name)
+        inventory = get_inventory_for(ingredient.name)
     		if inventory.available_count < ingredient.required_units
     			raise NoSufficientInventory.new(ingredient, inventory.available_count)
     		end

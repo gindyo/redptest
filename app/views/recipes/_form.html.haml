@@ -3,17 +3,15 @@
 	=f.text_field :name, {placeholder: 'Recipe Name'}
 	%h3 Ingredients
 	=f.fields_for :recipe_ingredients do |i|
-		=link_to 'add to list', "javascript:void(0)",onclick: '$("#new_product").show()'
 		%br
-		=select_tag(options_for_select(product_names.map{|name|caps name},caps(i.object.name)),{include_blank:true})
+		=select_tag(options_for_select(product_names.map{|name|caps name},caps(i.object.name)),{include_blank: 'Select'})
 		=i.number_field :required_units, {placeholder: 'Required Quantity'}
 		=link_to recipe_recipe_ingredient_path(@recipe.id,i.object), {method: :delete, confirm: 'Are you sure you want to delete this ingredient'} do
 			.icon.icon-large.icon-trash
-
-		%br
-
-	=link_to add_recipe_recipe_ingredient_path(@recipe.id),	{method: :post} do
-		%i.icon.icon-plus-sign.icon-large
+	%br
+	#new-ingerdient
+	%i#add-ingredient.icon.icon-plus-sign.icon-large
+	%br
 	%br
 	=f.submit
 #new_product.content.modal.hide
@@ -21,3 +19,31 @@
 		%i.icon.icon-large.icon-remove-sign
 	%h3 Adding New Ingredient
 	=render 'inventory_product_form'
+
+:javascript
+	numberOfElements = "#{@recipe.recipe_ingredients.count}"
+	$('#add-ingredient').on('click',function(){
+		numberOfElements++
+		emptyIngredient = document.createElement('div')
+		textbox = document.createElement('input')
+		textbox.type ='text'
+		textbox.required = true
+		textbox.placeholder = 'Ingredient'
+		textbox.name = "recipe[recipe_ingredients_attributes]["+numberOfElements+"][name]"
+		textbox2 = document.createElement('input')
+		textbox2.name = "recipe[recipe_ingredients_attributes]["+numberOfElements+"][required_units]"
+		textbox2.type = 'number'
+		textbox2.required = true
+		textbox2.placeholder = 'Units'
+		trash = document.createElement('i')
+		trash.className = 'icon icon-large icon-trash'
+		$(trash).on('click', function(){
+			$(event.target).parent().remove()
+		})
+
+
+
+
+		$(emptyIngredient).append(textbox).append(' ').append(textbox2).append(' ').append(trash)
+		$('#new-ingerdient').append(emptyIngredient)
+	})

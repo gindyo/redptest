@@ -8,4 +8,7 @@ module RecipesHelper
   def inventory_product
     InventoryProduct.new
   end
+  def caps words
+    MyHelpers.caps words
+  end
 end

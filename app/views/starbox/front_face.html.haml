@@ -1,0 +1,14 @@
+#starbox-front(ng-app='Starbox' ng-controller="FrontCtrl")
+  #buttons
+    -@starbox.menu.each do |menu_item|
+      .drink
+        %span.sb-front-button.available{id: menu_item.name, 'starbox-button'=>true, 'drink-type'=>menu_item.name}
+        %h5
+          =menu_item.name
+          =number_to_currency menu_item.price
+  #dispenser
+    #display
+      %h4 {{display.message}}
+    #cup-holder
+      %img(ng-src='assets/{{cupImg}}')
+                  

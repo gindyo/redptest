@@ -23,8 +23,8 @@ class RecipesController < ApplicationController
   end
 
   def add_ingredient
-    @recipe.recipe_ingredients<<RecipeIngredient.create
-    render 'edit'
+    @recipe.recipe_ingredients<<RecipeIngredient.create!
+    redirect_to action: 'edit'
   end
 
   # POST /recipes
@@ -52,6 +52,7 @@ class RecipesController < ApplicationController
     ingredients = []
     recipe_params[:recipe_ingredients_attributes].each do |key,ingredient|
       ingredients<< RecipeIngredient.new(ingredient)
+      InventoryProduct.find_or_create_by name: ingredient[:name]  
     end
     recipe_params[:recipe_ingredients] = ingredients
     respond_to do |format|
@@ -78,7 +79,7 @@ class RecipesController < ApplicationController
   def add_to_inventory
     inventory_product_params = params.require(:inventory_product).permit(:name, :available_count, :unit_price)
     InventoryProduct.create!(inventory_product_params)
-    redirect_to :back
+    redirect_to action: :edit
   end
 
   private

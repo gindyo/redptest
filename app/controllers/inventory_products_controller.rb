@@ -61,6 +61,14 @@ class InventoryProductsController < ApplicationController
     end
   end
 
+  def restock
+    InventoryProduct.all.to_a.each do |i|
+      i.available_count = 25
+      i.save!
+    end
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inventory_product

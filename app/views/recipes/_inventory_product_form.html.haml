@@ -1,5 +1,5 @@
 -@inventory_product = inventory_product
-= form_for @inventory_product, url: 'add_to_inventory' do |f|
+= form_for @inventory_product, url: 'add_to_inventory', method: 'POST' do |f|
   - if @inventory_product.errors.any?
     #error_explanation
       %h2= "#{pluralize(@inventory_product.errors.count, "error")} prohibited this inventory_product from being saved:"

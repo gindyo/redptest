@@ -14,6 +14,7 @@ class Starbox
 		@inventory_class = inventory_class
 		@recipes_class = recipes_class
 		@beverage_class = beverage_class
+        @status = {}
 	end
 
 	def menu
@@ -27,11 +28,14 @@ class Starbox
     def make beverage
     	begin
     		@beverage_maker.make beverage
-    		@status = success_status beverage
+    		@status[:message] = success_status beverage
+            @status[:code] = 'ok'
     	rescue NoSufficientInventory
-    		@status = failure_status beverage
+    		@status[:message] = failure_status beverage
+            @status[:code] = 'error'
         rescue NoSuchRecipe
-            @status = 'No recipe found'
+            @status[:message] = 'No recipe found'
+            @status[:code] = 'error'
     	end
     end
 

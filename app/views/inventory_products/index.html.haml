@@ -20,4 +20,5 @@
 
 %br
 
-= link_to 'New Inventory product', new_inventory_product_path
+= link_to 'New Inventory product', new_inventory_product_path, class: 'btn btn-info'
+= link_to 'Restock', :restock_inventory_url, class: 'btn btn-info', method: :post
