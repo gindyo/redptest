@@ -10,5 +10,5 @@
     #display
       %h4 {{display.message}}
     #cup-holder
-      %img(ng-src='assets/{{cupImg}}')
+      =image_tag 'empty_cup.png', {'ng-src'=>'/assets/{{cupImg}}'}
                   

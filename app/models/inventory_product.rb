@@ -38,7 +38,8 @@ class InventoryProduct < ActiveRecord::Base
     end
 
     def self.get_inventory_for product_name
-   		self.where(name:product_name).first
+      fake = Struct.new(:available_count)
+   		self.where(name:product_name).first || fake.new(0)
    	end
 		def self.all_inventory
       self.all
