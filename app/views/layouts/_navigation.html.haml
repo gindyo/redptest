@@ -1,5 +1,6 @@
-= link_to "Redptest", '/', :class => 'brand'
+= link_to "Redptest", root_path, :class => 'brand', method:'post'
 %nav.pull-right
-  =link_to 'Inventory', inventory_products_path
-  |
-  =link_to 'Recipes', recipes_path
+  %h3
+    =link_to 'Inventory', inventory_products_path
+    |
+    =link_to 'Recipes', recipes_path
