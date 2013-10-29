@@ -38,7 +38,7 @@ class InventoryProduct < ActiveRecord::Base
     end
 
     def self.get_inventory_for product_name
-      self.find_by(name:product_name)
+   		self.where('LOWER(name)=LOWER(?)',product_name).first
    	end
 		def self.all_inventory
       self.all
