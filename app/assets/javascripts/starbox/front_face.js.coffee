@@ -1,5 +1,6 @@
 angular.module('Starbox', []).controller 'FrontCtrl', ["$scope","$http", ($scope,$http)->
-  console.log 'heloo'
+  $scope.working = false
+  console.log $scope
   $scope.cupImg = $scope.emptyImg
   $scope.display = {message:' Welcome to Starbox'}
   $scope.make = (drinkType)->

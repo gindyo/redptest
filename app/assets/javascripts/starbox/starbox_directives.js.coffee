@@ -1,4 +1,5 @@
-angular.module('Starbox').directive 'starboxButton', ->
+sb = angular.module('Starbox')
+sb.directive 'starboxButton', ->
   restrict: 'A'
   transclude: true
   replace: true
@@ -8,10 +9,19 @@ angular.module('Starbox').directive 'starboxButton', ->
       scope.make atts.drinkType
       console.log 'hi'
 
-angular.module('Starbox').directive 'imagePaths', ->
+sb.directive 'imagePaths', ->
   restrict: 'A'
-  transclude: true
-  replace: true
   link: (scope, element, attr)->
     scope.workingImg = attr.workingImg
     scope.emptyImg = attr.emptyImg
+
+sb.directive 'sbStartButton', ->
+  restrict: 'A'
+  link: (scope, element, attr)->
+    element.on "click", ->
+      console.log 'starting'
+      scope.working = true
+      scope.$apply()
+      
+
+

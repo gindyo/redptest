@@ -1,16 +1,20 @@
 #starbox-front(ng-app='Starbox' ng-controller="FrontCtrl")
-  #image-paths{'image-paths'=>true, 'working-img'=>image_path('coffee.gif'), 'empty-img'=>image_path('empty_cup.png')}
-  #buttons
-    -@starbox.menu.each do |menu_item|
-      .drink
-        %span.sb-front-button.available{id: menu_item.name, 'starbox-button'=>true, 'drink-type'=>menu_item.name}
-        %h5
-          =menu_item.name
-          =number_to_currency menu_item.price
-  #dispenser
-    #display
-      %h4 {{display.message}}
-    #cup-holder
-      %img{src:image_path('empty_cup.png'),'ng-src'=>'{{cupImg}}'}
+  #start-button(sb-start-button)
+    Start
+  #started
+    #image-paths{'image-paths'=>true, 'working-img'=>image_path('coffee.gif'), 'empty-img'=>image_path('empty_cup.png')}
+    #buttons
+      -@starbox.menu.each do |menu_item|
+        .drink
+          %span.sb-front-button.available{id: menu_item.name, 'starbox-button'=>true, 'drink-type'=>menu_item.name,'ng-show'=>"working"}
+          %h5
+            =menu_item.name
+            =number_to_currency menu_item.price
+    #dispenser
+      #display
+        %h4(ng-show="working")
+          {{display.message}}
+      #cup-holder
+        %img{src:image_path('empty_cup.png'),'ng-src'=>'{{cupImg}}','ng-show'=>"working"}}
 
     
