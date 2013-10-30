@@ -10,7 +10,7 @@ angular.module('Starbox', []).controller 'FrontCtrl', ["$scope","$http", ($scope
       $scope.pourBeverage()
   $scope.pourBeverage = ->
     if $scope.status == 'ok'
-      $scope.cupImg = $scope.workingImg
+      $scope.cupImg = $scope.workingImg+'?'+Date()
     else
       $scope.cupImg = $scope.emptyImg
 

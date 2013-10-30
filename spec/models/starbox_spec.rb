@@ -16,12 +16,12 @@ describe Starbox do
 	describe 'making beverage' do
 		it 'makes a beverage' do
 			sb.make(:espresso)
-			sb.status.should eq sb.success_status :espresso
+			sb.status[:code].should eql 'ok'
 		end
 		it 'does not make beverage' do
 			InventoryProduct.any_instance.stub available_count: 0
 			sb.make(:espresso)
-			sb.status.should eq sb.failure_status :espresso
+			sb.status[:code].should eq 'error'
 		end
 	end
 
